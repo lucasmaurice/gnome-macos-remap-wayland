@@ -18,6 +18,9 @@ modmap:
 
 # For remapping a sequence of key combinations to another sequence of key combinations
 keymap:
+  - name: Make ⌘ Shift Space remap for 1Password
+    remap:
+      Ctrl-Shift-Space: Super-Shift-Space
   - name: Make ⌘← and ⌘→ work as Home and End (with Shift for selection)
     remap:
       Ctrl-Left: Home

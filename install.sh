@@ -108,8 +108,8 @@ gsettings set org.gnome.desktop.wm.keybindings switch-group "['<Control>grave']"
 gsettings set org.gnome.desktop.wm.keybindings switch-group-backward "['<Shift><Control>grave']"
 
 # ⌘ - Set default change input source shortcuts
-gsettings reset org.gnome.desktop.wm.keybindings switch-input-source
-gsettings reset org.gnome.desktop.wm.keybindings switch-input-source-backward
+gsettings set org.gnome.desktop.wm.keybindings switch-input-source "[]"
+gsettings set org.gnome.desktop.wm.keybindings switch-input-source-backward "[]"
 
 # Switch workspaces conflicts with default GNOME window left/right tiling
 gsettings set org.gnome.mutter.keybindings toggle-tiled-left "[]"
