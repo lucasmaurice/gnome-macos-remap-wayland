@@ -53,20 +53,6 @@ gsettings reset org.gnome.shell.keybindings toggle-overview
 # Show all applications (with mac's F4 key and imitate spotlight)
 gsettings reset org.gnome.shell.keybindings toggle-application-view
 
-# Setting relocatable schema for Terminal
-gsettings reset org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ copy
-gsettings reset org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ paste
-gsettings reset org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ new-tab
-gsettings reset org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ new-window
-gsettings reset org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ close-tab
-gsettings reset org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ close-window
-gsettings reset org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ find
-
-# Screenshots
-gsettings reset org.gnome.shell.keybindings screenshot
-gsettings reset org.gnome.shell.keybindings show-screenshot-ui
-gsettings reset org.gnome.shell.keybindings screenshot-window
-
 # Disable screensaver to avoid potential issues
 gsettings reset org.gnome.settings-daemon.plugins.media-keys screensaver
 

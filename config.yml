@@ -1,101 +1,34 @@
+# See doc here: https://github.com/xremap/xremap
+
 keypress_delay_ms: 10
 
-# `modmap` section
-# For key-to-key remapping (no combinations). Remapping a key to a modifier key (e.g. CapsLock to Control_L) is supported only in `modmap` section
+# code.Code
+# terminator.Terminator
+# gnome-terminal-server.Gnome-terminal
+# guake.Guake
+
+# For key-to-key remapping. Remapping a key to a modifier key (e.g. CapsLock to Control_L) is supported only in `modmap` section
 modmap:
   - name: Make ⌘ act as Ctrl
-#    application:
-#      not: [gnome-terminal-server, org.gnome.Console]
     remap:
       LeftCtrl: LeftMeta
       LeftMeta: LeftCtrl
       RightCtrl: RightMeta
       RightMeta: RightCtrl
-# `keymap` section
+
 # For remapping a sequence of key combinations to another sequence of key combinations
 keymap:
-#  - name: Test
-#    remap:
-#      Shift-A: b
   - name: Make ⌘← and ⌘→ work as Home and End (with Shift for selection)
     remap:
       Ctrl-Left: Home
       Ctrl-Right: End
       Shift-Ctrl-Left: Shift-Home
       Shift-Ctrl-Right: Shift-End
-  - name: Delete word
-    remap:
-      Alt-Backspace: Ctrl-Backspace
-  - name: Delete complete line # TODO - check on macOS. Not sure how to delete before and after cursor.
+  - name: All Terminals
     application:
-      not: gnome-terminal-server
-    remap:
-      Ctrl-K: Ctrl-D
-#  TODO: Next word
-#  TODO: Previous word
-  - name: Nautilus (Files) shortcuts
-    application:
-      only: org.gnome.Nautilus
-    remap:
-      Ctrl-Up: Alt-Up          # Go Up
-      Ctrl-Down: Enter         # Go Down. Using `Enter` here because `Alt-Down` does not open files, only goes down.
-      Ctrl-Backspace: Delete   # Move to Trash
-      Shift-Ctrl-Dot: Ctrl-H   # Show/Hide Hidden Files
-      Shift-Ctrl-G: Ctrl-L     # Enter Location
-      # Enter: F2              # Rename. Conflict when need to hit `Enter` in focused address bar.
-  - name: Terminal copy and paste and window management
-    application:
-      only: gnome-terminal-server
-    remap:
-      Ctrl-C: Shift-Super-C
-      Ctrl-V: Shift-Super-V
-      Ctrl-T: Shift-Super-T
-      Ctrl-N: Shift-Super-N
-      Ctrl-W: Shift-Super-W
-      Ctrl-Q: Shift-Super-Q
-      Ctrl-F: Shift-Super-F
-  - name: Terminal and Console interrupt
-    application:
-      only: [gnome-terminal-server, org.gnome.Console]
+      only: [/terminal/, /terminator/, /guake/]
     remap:
       Super-C: Ctrl-C
-  - name: Terminal and Console - make Ctrl work in `nano` editor # keycombiner.com/collections/nano/
-    application:
-      only: [gnome-terminal-server, org.gnome.Console]
-    remap:
-      Super-Q: Ctrl-Q # Interferes with GNOME close window - not sure how to work around
-      Super-W: Ctrl-W
-      Super-E: Ctrl-E
-      Super-E: Ctrl-R
-      Super-T: Ctrl-T
-      Super-Y: Ctrl-Y
-      Super-U: Ctrl-U
-      Super-O: Ctrl-O
-      Super-P: Ctrl-P
-      Super-KEY_RIGHTBRACE: Ctrl-KEY_RIGHTBRACE
-      Super-A: Ctrl-A
-      Super-S: Ctrl-S
-# How to implement a gnome-terminal-server key combination that conflicts with some GNOME keybinding?
-# Make a script similar to the one below. Script unsets the GNOME keybinding, then sends keys, then restores keybinding back.
-      Super-D:
-        launch: ["sh", "~/.local/bin/terminal-console-ctrl-d.sh"]
-      Super-F: Ctrl-F
-      Super-G: Ctrl-G
-      Super-H: Ctrl-H
-      Super-J: Ctrl-J
-      Super-K: Ctrl-K
-      Super-L: Ctrl-L
-      Super-Z: Ctrl-Z
-      Super-X: Ctrl-X
-#     Super-C: Ctrl-C # declared in previous sections
-      Super-V: Ctrl-V
-      Super-B: Ctrl-B
-      Super-N: Ctrl-N
-      Super-KEY_SLASH: Ctrl-KEY_SLASH
-  - name: Console shortcuts
-    application:
-      only: org.gnome.Console
-    remap:
       Ctrl-C: Ctrl-Shift-C # Copy text
       Ctrl-V: Ctrl-Shift-V # Paste text
       Ctrl-N: Ctrl-Shift-N # New window
@@ -103,9 +36,64 @@ keymap:
       Ctrl-T: Ctrl-Shift-T # New tab
       Ctrl-W: Ctrl-Shift-W # Close tab
       Ctrl-F: Shift-Ctrl-F # Find
-  - name: Eclipse context assist and switch header/source
-    application:
-      only: Eclipse
-    remap:
-      Super-KEY_SPACE: Alt-KEY_SPACE
-      Super-KEY_TAB: Alt-KEY_TAB
+
+
+  #   - name: Delete word
+  #     remap:
+  #       Alt-Backspace: Ctrl-Backspace
+  #   - name: Delete complete line # TODO - check on macOS. Not sure how to delete before and after cursor.
+  #     application:
+  #       not: gnome-terminal-server
+  #     remap:
+  #       Ctrl-K: Ctrl-D
+  # #  TODO: Next word
+  # #  TODO: Previous word
+  #   - name: Nautilus (Files) shortcuts
+  #     application:
+  #       only: org.gnome.Nautilus
+  #     remap:
+  #       Ctrl-Up: Alt-Up          # Go Up
+  #       Ctrl-Down: Enter         # Go Down. Using `Enter` here because `Alt-Down` does not open files, only goes down.
+  #       Ctrl-Backspace: Delete   # Move to Trash
+  #       Shift-Ctrl-Dot: Ctrl-H   # Show/Hide Hidden Files
+  #       Shift-Ctrl-G: Ctrl-L     # Enter Location
+  #       # Enter: F2              # Rename. Conflict when need to hit `Enter` in focused address bar.
+#   - name: Terminal and Console - make Ctrl work in `nano` editor # keycombiner.com/collections/nano/
+#     application:
+#       only: [gnome-terminal-server, org.gnome.Console]
+#     remap:
+#       Super-Q: Ctrl-Q # Interferes with GNOME close window - not sure how to work around
+#       Super-W: Ctrl-W
+#       Super-E: Ctrl-E
+#       Super-E: Ctrl-R
+#       Super-T: Ctrl-T
+#       Super-Y: Ctrl-Y
+#       Super-U: Ctrl-U
+#       Super-O: Ctrl-O
+#       Super-P: Ctrl-P
+#       Super-KEY_RIGHTBRACE: Ctrl-KEY_RIGHTBRACE
+#       Super-A: Ctrl-A
+#       Super-S: Ctrl-S
+# # How to implement a gnome-terminal-server key combination that conflicts with some GNOME keybinding?
+# # Make a script similar to the one below. Script unsets the GNOME keybinding, then sends keys, then restores keybinding back.
+#       Super-D:
+#         launch: ["sh", "~/.local/bin/terminal-console-ctrl-d.sh"]
+#       Super-F: Ctrl-F
+#       Super-G: Ctrl-G
+#       Super-H: Ctrl-H
+#       Super-J: Ctrl-J
+#       Super-K: Ctrl-K
+#       Super-L: Ctrl-L
+#       Super-Z: Ctrl-Z
+#       Super-X: Ctrl-X
+# #     Super-C: Ctrl-C # declared in previous sections
+#       Super-V: Ctrl-V
+#       Super-B: Ctrl-B
+#       Super-N: Ctrl-N
+#       Super-KEY_SLASH: Ctrl-KEY_SLASH
+#   - name: Eclipse context assist and switch header/source
+#     application:
+#       only: Eclipse
+#     remap:
+#       Super-KEY_SPACE: Alt-KEY_SPACE
+#       Super-KEY_TAB: Alt-KEY_TAB
